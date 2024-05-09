@@ -1,23 +1,26 @@
-import java.time.ZonedDateTime;
+
+/*Crea un oggetto OffsetDateTime da questa stringa 2002-03-01T13:00:00Z
+        Formatta la data ottenuta in FULL, MEDIUM e SHORT
+        Stampa le varie versioni*/
+
+
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.time.format.FormatStyle;
+
 
 public class Main {
     public static void main(String[] args) {
-        // Stringa di input
-        String inputString = "2002-03-01T13:00:00Z";
+        OffsetDateTime date = OffsetDateTime.parse("2002-03-01T13:00:00Z");
+        String dataFull = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+        String dataMid = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+        String dataShort = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+        System.out.println(dataFull);
+        System.out.println(dataMid);
+        System.out.println(dataShort);
 
-        // Crea un oggetto ZonedDateTime dalla stringa
-        ZonedDateTime zonedDateTime = ZonedDateTime.parse(inputString);
+// esercizio svolto con Andrea Vecchione
 
-        // Formattazione della data
-        DateTimeFormatter fullFormatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy 'at' HH:mm:ss zzzz", Locale.ENGLISH);
-        DateTimeFormatter mediumFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' HH:mm:ss a z", Locale.ENGLISH);
-        DateTimeFormatter shortFormatter = DateTimeFormatter.ofPattern("M/d/yy, h:mm a", Locale.ENGLISH);
 
-        // Stampa le varie versioni
-        System.out.println("FULL Format: " + zonedDateTime.format(fullFormatter));
-        System.out.println("MEDIUM Format: " + zonedDateTime.format(mediumFormatter));
-        System.out.println("SHORT Format: " + zonedDateTime.format(shortFormatter));
     }
 }
